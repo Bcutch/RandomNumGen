@@ -1,0 +1,109 @@
+package com.company;
+
+        import java.util.*;
+        import java.io.*;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        int[] random = new int[50];
+
+        Random rand = new Random();
+
+        int r = rand.nextInt(8) + 1;
+
+        for (int i = 0; i < 50; i++) {
+            random[i] = r;
+            r = rand.nextInt(8) + 1;
+        }
+
+        System.out.println("Position #s");
+
+        for (int i = 0; i < 50; i++) {
+            System.out.print(i + " ");
+        }
+
+        System.out.println();
+        System.out.println("-------------------------------------------------------------------------------------------------------------------------------------------");
+
+        for (int i = 0; i < 50; i++) {
+            if (i < 10) {
+                System.out.print(random[i] + " ");
+            }
+            else {
+                System.out.print(random[i] + "  ");
+            }
+
+        }
+
+        int[] array = new int[50];
+
+        boolean fileDone = false;
+        int count = 0;
+
+        try {
+
+            File file = new File("fiftyInts.txt");
+            Scanner scan = new Scanner(file);
+
+            while (!fileDone) {
+                if (scan.hasNextInt()) {
+                    array[count] = scan.nextInt();
+                    count++;
+                }
+                else {
+                    fileDone = true;
+                }
+            }
+        }
+        catch (FileNotFoundException e) {
+            System.out.print(e);
+            e.printStackTrace();
+        }
+
+        System.out.println();
+        System.out.println();
+
+        for (int i = 0; i < 50; i++) {
+            if (i < 10) {
+                System.out.print(array[i] + " ");
+            }
+            else {
+                System.out.print(array[i] + "  ");
+            }
+        }
+
+        System.out.println();
+        System.out.println("-------------------------------------------------------------------------------------------------------------------------------------------");
+
+
+        int[] same = new int[50];
+        count = 0;
+
+        for (int i = 0; i < 50; i++) {
+            if (random[i] == array[i]) {
+                same[count] = random[i];
+                count++;
+            }
+        }
+
+        for (int i = 0; i < 50; i++) {
+            if (same[i] != 0){
+                System.out.print(same[i] + " ");
+            }
+        }
+
+        System.out.println();
+
+        System.out.print("Same at position #s:");
+
+        for (int i = 0; i < 50; i++) {
+            if (random[i] == array[i]) {
+                System.out.print(" " + i);
+            }
+        }
+
+
+    }//end method
+}//end class
